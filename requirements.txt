@@ -1,0 +1,7 @@
+accelerate
+git+https://github.com/huggingface/diffusers
+torch
+transformers==4.42.4
+xformers
+sentencepiece
+peft
