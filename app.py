@@ -14,18 +14,14 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 MAX_SEED = np.iinfo(np.int32).max
 MAX_IMAGE_SIZE = 2048
 
+lora_model="davisbro/half_illustration"
+
 # Initialize the pipeline globally
 pipe = DiffusionPipeline.from_pretrained("black-forest-labs/FLUX.1-dev", torch_dtype=torch.bfloat16, token=hf_token).to(device)
+pipe.load_lora_weights(lora_model)
 
-def infer(prompt, seed=0, randomize_seed=True, width=1024, height=1024, guidance_scale=5.0, num_inference_steps=28, lora_model="davisbro/half_illustration", progress=gr.Progress(track_tqdm=True)):
+def infer(prompt, seed=0, randomize_seed=True, width=1024, height=1024, guidance_scale=5.0, num_inference_steps=28, progress=gr.Progress(track_tqdm=True)):
     global pipe
-    
-    # Load LoRA if specified
-    if lora_model:
-        try:
-            pipe.load_lora_weights(lora_model)
-        except Exception as e:
-            return None, seed, f"Failed to load LoRA model: {str(e)}"
 
     if randomize_seed:
         seed = random.randint(0, MAX_SEED)
@@ -40,10 +36,6 @@ def infer(prompt, seed=0, randomize_seed=True, width=1024, height=1024, guidance
             generator=generator,
             guidance_scale=guidance_scale
         ).images[0]
-        
-        # Unload LoRA weights after generation
-        if lora_model:
-            pipe.unload_lora_weights()
         
         return image
     except Exception as e:
@@ -71,7 +63,7 @@ with gr.Blocks(css=css) as demo:
             )
             run_button = gr.Button("Run", scale=0)
         
-        result = gr.Image(label="Result", show_label=False)
+        result = gr.Image(label="Result", show_label=False, type="filepath")
         
         with gr.Accordion("Advanced Settings", open=False):
             seed = gr.Slider(
