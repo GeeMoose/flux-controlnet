@@ -18,7 +18,7 @@ MAX_IMAGE_SIZE = 2048
 pipe = DiffusionPipeline.from_pretrained("black-forest-labs/FLUX.1-dev", torch_dtype=torch.bfloat16).to(device)
 
 @spaces.GPU(duration=300)
-def infer(prompt, lora_model, seed=42, randomize_seed=False, width=1024, height=1024, guidance_scale=5.0, num_inference_steps=28, progress=gr.Progress(track_tqdm=True)):
+def infer(prompt, lora_model="davisbro/half_illustration", seed=0, randomize_seed=True, width=1024, height=1024, guidance_scale=5.0, num_inference_steps=28, progress=gr.Progress(track_tqdm=True)):
     global pipe
     
     # Load LoRA if specified
@@ -50,12 +50,6 @@ def infer(prompt, lora_model, seed=42, randomize_seed=False, width=1024, height=
     except Exception as e:
         return None, seed, f"Error during image generation: {str(e)}"
 
-examples = [
-    ["a tiny astronaut hatching from an egg on the moon", ""],
-    ["a cat holding a sign that says hello world", ""],
-    ["an anime illustration of a wiener schnitzel", ""],
-]
-
 css = """
 #col-container {
     margin: 0 auto;
@@ -65,9 +59,7 @@ css = """
 
 with gr.Blocks(css=css) as demo:
     with gr.Column(elem_id="col-container"):
-        gr.Markdown(f"""# FLUX.1 [dev] with LoRA Support
-12B param rectified flow transformer guidance-distilled from [FLUX.1 [pro]](https://blackforestlabs.ai/)  
-[[non-commercial license](https://huggingface.co/black-forest-labs/FLUX.1-dev/blob/main/LICENSE.md)] [[blog](https://blackforestlabs.ai/announcing-black-forest-labs/)] [[model](https://huggingface.co/black-forest-labs/FLUX.1-dev)]
+        gr.Markdown(f"""# FLUX.1 [dev] with half illustration lora
         """)
         
         with gr.Row():
@@ -79,11 +71,6 @@ with gr.Blocks(css=css) as demo:
                 container=False,
             )
             run_button = gr.Button("Run", scale=0)
-        
-        lora_model = gr.Text(
-            label="LoRA Model ID (optional)",
-            placeholder="Enter Hugging Face LoRA model ID",
-        )
         
         result = gr.Image(label="Result", show_label=False)
         output_message = gr.Textbox(label="Output Message")
@@ -127,19 +114,11 @@ with gr.Blocks(css=css) as demo:
                     step=1,
                     value=28,
                 )
-        
-        gr.Examples(
-            examples=examples,
-            fn=infer,
-            inputs=[prompt, lora_model],
-            outputs=[result, seed, output_message],
-            cache_examples="lazy"
-        )
 
     gr.on(
         triggers=[run_button.click, prompt.submit],
         fn=infer,
-        inputs=[prompt, lora_model, seed, randomize_seed, width, height, guidance_scale, num_inference_steps],
+        inputs=[prompt, seed, randomize_seed, width, height, guidance_scale, num_inference_steps],
         outputs=[result, seed, output_message]
     )
 
