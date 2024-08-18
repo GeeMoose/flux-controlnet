@@ -18,7 +18,7 @@ MAX_IMAGE_SIZE = 2048
 pipe = DiffusionPipeline.from_pretrained("black-forest-labs/FLUX.1-dev", torch_dtype=torch.bfloat16).to(device)
 
 @spaces.GPU(duration=300)
-def infer(prompt, lora_model="davisbro/half_illustration", seed=0, randomize_seed=True, width=1024, height=1024, guidance_scale=5.0, num_inference_steps=28, progress=gr.Progress(track_tqdm=True)):
+def infer(prompt, seed=0, randomize_seed=True, width=1024, height=1024, guidance_scale=5.0, num_inference_steps=28, lora_model="davisbro/half_illustration", progress=gr.Progress(track_tqdm=True)):
     global pipe
     
     # Load LoRA if specified
