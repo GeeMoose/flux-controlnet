@@ -36,8 +36,15 @@ def infer(prompt, seed=0, randomize_seed=True, width=1024, height=1024, guidance
             generator=generator,
             guidance_scale=guidance_scale
         ).images[0]
+
+        # update the save image path
+        outputs = "outputs"
+        if not os.path.exists(outputs):
+            os.makedirs(outputs, exist_ok=True)
+        image_path = os.path.join(outputs, f"{seed}.png")
+        image.save(image_path)
         
-        return image
+        return image_path
     except Exception as e:
         return None
 
