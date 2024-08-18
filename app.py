@@ -1,23 +1,22 @@
 import gradio as gr
 import numpy as np
 import random
-import spaces
 import torch
-from diffusers import DiffusionPipeline, FlowMatchEulerDiscreteScheduler
-from transformers import CLIPTextModel, CLIPTokenizer, T5EncoderModel, T5TokenizerFast
-from huggingface_hub import hf_hub_download
+from diffusers import DiffusionPipeline
+from huggingface_hub import login
 import os
 
-dtype = torch.bfloat16
+hf_token = "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"
+login(hf_token)
+# dtype = torch.bfloat16
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
 MAX_SEED = np.iinfo(np.int32).max
 MAX_IMAGE_SIZE = 2048
 
 # Initialize the pipeline globally
-pipe = DiffusionPipeline.from_pretrained("black-forest-labs/FLUX.1-dev", torch_dtype=torch.bfloat16).to(device)
+pipe = DiffusionPipeline.from_pretrained("black-forest-labs/FLUX.1-dev", torch_dtype=torch.bfloat16, token=hf_token).to(device)
 
-@spaces.GPU(duration=300)
 def infer(prompt, seed=0, randomize_seed=True, width=1024, height=1024, guidance_scale=5.0, num_inference_steps=28, lora_model="davisbro/half_illustration", progress=gr.Progress(track_tqdm=True)):
     global pipe
     
@@ -34,7 +33,7 @@ def infer(prompt, seed=0, randomize_seed=True, width=1024, height=1024, guidance
     
     try:
         image = pipe(
-            prompt=prompt, 
+            prompt=f"in the style of TOK, {prompt}", 
             width=width,
             height=height,
             num_inference_steps=num_inference_steps, 
