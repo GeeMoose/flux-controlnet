@@ -45,9 +45,9 @@ def infer(prompt, seed=0, randomize_seed=True, width=1024, height=1024, guidance
         if lora_model:
             pipe.unload_lora_weights()
         
-        return image, seed, "Image generated successfully."
+        return image
     except Exception as e:
-        return None, seed, f"Error during image generation: {str(e)}"
+        return None
 
 css = """
 #col-container {
@@ -72,7 +72,6 @@ with gr.Blocks(css=css) as demo:
             run_button = gr.Button("Run", scale=0)
         
         result = gr.Image(label="Result", show_label=False)
-        output_message = gr.Textbox(label="Output Message")
         
         with gr.Accordion("Advanced Settings", open=False):
             seed = gr.Slider(
@@ -118,7 +117,7 @@ with gr.Blocks(css=css) as demo:
         triggers=[run_button.click, prompt.submit],
         fn=infer,
         inputs=[prompt, seed, randomize_seed, width, height, guidance_scale, num_inference_steps],
-        outputs=[result, seed, output_message]
+        outputs=[result]
     )
 
 demo.launch()
