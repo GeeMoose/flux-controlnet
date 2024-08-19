@@ -119,4 +119,11 @@ with gr.Blocks(css=css) as demo:
         outputs=[result]
     )
 
-demo.launch()
+# demo.launch()
+demo.queue().launch(
+    share=False,
+    debug=False,
+    server_name="0.0.0.0",
+    server_port=7778,
+)
+
