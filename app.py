@@ -20,13 +20,22 @@ lora_model="davisbro/half_illustration"
 pipe = DiffusionPipeline.from_pretrained("black-forest-labs/FLUX.1-dev", torch_dtype=torch.bfloat16, token=hf_token).to(device)
 pipe.load_lora_weights(lora_model)
 
-def infer(prompt, seed=0, randomize_seed=True, width=1024, height=1024, guidance_scale=5.0, num_inference_steps=28, progress=gr.Progress(track_tqdm=True)):
+def update_custom_size_visibility(choice):
+    return gr.update(visible=choice == "Custom")
+
+def infer(prompt, seed=0, randomize_seed=True, image_size="1024x576", custom_width=1024, custom_height=1024, guidance_scale=5.0, num_inference_steps=28, progress=gr.Progress(track_tqdm=True)):
     global pipe
 
     if randomize_seed:
         seed = random.randint(0, MAX_SEED)
     generator = torch.Generator().manual_seed(seed)
     
+    if image_size == "Custom":
+        width, height = custom_width, custom_height
+    else:
+        # 从image_size字符串中提取宽度和高度
+        width, height = map(int, image_size.split('x'))
+
     try:
         image = pipe(
             prompt=f"in the style of TOK, {prompt}", 
@@ -70,6 +79,35 @@ with gr.Blocks(css=css) as demo:
             )
             run_button = gr.Button("Run", scale=0)
         
+        #添加gradio组件用于选择图片尺寸
+        image_size = gr.Radio(
+            label="Image Size",
+            choices=["512x512", "1024x1024", "768x1024","576x1024","1024x768","1024x576","Custom"],
+            value="512x512",
+        )
+
+        with gr.Column(visible=False) as custom_size_col:
+            width = gr.Slider(
+                label="Width",
+                minimum=256,
+                maximum=MAX_IMAGE_SIZE,
+                step=32,
+                value=1024,
+            )
+            height = gr.Slider(
+                label="Height",
+                minimum=256,
+                maximum=MAX_IMAGE_SIZE,
+                step=32,
+                value=1024,
+            )
+
+        image_size.change(
+            fn=update_custom_size_visibility,
+            inputs=[image_size],
+            outputs=[custom_size_col]
+        )
+        
         result = gr.Image(label="Result", show_label=False, type="filepath")
         
         with gr.Accordion("Advanced Settings", open=False):
@@ -81,21 +119,6 @@ with gr.Blocks(css=css) as demo:
                 value=0,
             )
             randomize_seed = gr.Checkbox(label="Randomize seed", value=True)
-            with gr.Row():
-                width = gr.Slider(
-                    label="Width",
-                    minimum=256,
-                    maximum=MAX_IMAGE_SIZE,
-                    step=32,
-                    value=1024,
-                )
-                height = gr.Slider(
-                    label="Height",
-                    minimum=256,
-                    maximum=MAX_IMAGE_SIZE,
-                    step=32,
-                    value=1024,
-                )
             with gr.Row():
                 guidance_scale = gr.Slider(
                     label="Guidance Scale",
@@ -115,15 +138,13 @@ with gr.Blocks(css=css) as demo:
     gr.on(
         triggers=[run_button.click, prompt.submit],
         fn=infer,
-        inputs=[prompt, seed, randomize_seed, width, height, guidance_scale, num_inference_steps],
+        inputs=[prompt, seed, randomize_seed, image_size, width, height, guidance_scale, num_inference_steps],
         outputs=[result]
     )
 
-# demo.launch()
 demo.queue().launch(
-    share=False,
+    share=True,
     debug=False,
     server_name="0.0.0.0",
     server_port=7778,
 )
-
