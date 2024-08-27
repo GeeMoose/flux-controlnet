@@ -2,12 +2,10 @@ import gradio as gr
 import numpy as np
 import random
 import torch
-from diffusers import DiffusionPipeline
+from diffusers import FluxPipeline
 from huggingface_hub import login
 import os
 
-hf_token = "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"
-login(hf_token)
 # dtype = torch.bfloat16
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -17,7 +15,7 @@ MAX_IMAGE_SIZE = 2048
 lora_model="davisbro/half_illustration"
 
 # Initialize the pipeline globally
-pipe = DiffusionPipeline.from_pretrained("black-forest-labs/FLUX.1-dev", torch_dtype=torch.bfloat16, token=hf_token).to(device)
+pipe = FluxPipeline.from_pretrained("black-forest-labs/FLUX.1-dev", torch_dtype=torch.bfloat16, token="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").to(device)
 pipe.load_lora_weights(lora_model)
 
 def update_custom_size_visibility(choice):
