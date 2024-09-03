@@ -1,9 +1,9 @@
 [   
     {
-	"image": "https://huggingface.co/Shakker-Labs/FLUX.1-dev-LoRA-blended-realistic-illustration/resolve/main/images/example7.png",
-	"title": "blended-realistic-illustration",
-	"repo": "Shakker-Labs/FLUX.1-dev-LoRA-blended-realistic-illustration",
-	"trigger_word": "artistic style blends reality and illustration elements"
+      "image": "https://huggingface.co/Shakker-Labs/FLUX.1-dev-LoRA-blended-realistic-illustration/resolve/main/images/example7.png",
+      "title": "blended-realistic-illustration",
+      "repo": "Shakker-Labs/FLUX.1-dev-LoRA-blended-realistic-illustration",
+      "trigger_word": "artistic style blends reality and illustration elements"
     },
     {
       "image": "https://huggingface.co/multimodalart/flux-tarot-v1/resolve/main/images/e5f2761e5d474e6ba492d20dca0fa26f_e78f1524074b42b6ac49643ffad50ac6.png",
