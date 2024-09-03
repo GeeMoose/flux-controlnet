@@ -1,0 +1,162 @@
+[   
+    {
+		"image": "https://huggingface.co/Shakker-Labs/FLUX.1-dev-LoRA-blended-realistic-illustration/resolve/main/images/example7.png",
+		"title": "blended-realistic-illustration",
+		"repo": "Shakker-Labs/FLUX.1-dev-LoRA-blended-realistic-illustration",
+		"trigger_word": "artistic style blends reality and illustration elements"
+	},
+    {
+      "image": "https://huggingface.co/multimodalart/flux-tarot-v1/resolve/main/images/e5f2761e5d474e6ba492d20dca0fa26f_e78f1524074b42b6ac49643ffad50ac6.png",
+      "title": "Tarot v1",
+      "repo": "multimodalart/flux-tarot-v1",
+      "trigger_word": "in the style of TOK a trtcrd, tarot style",
+      "aspect": "portrait"
+    },
+    {
+      "image": "https://huggingface.co/alvdansen/softpasty-flux-dev/resolve/main/images/ComfyUI_00814_%20(2).png",
+      "title": "SoftPasty",
+      "repo": "alvdansen/softpasty-flux-dev",
+      "trigger_word": "araminta_illus illustration style"
+    },
+    {
+      "image": "https://huggingface.co/AIWarper/RubberCore1920sCartoonStyle/resolve/main/images/Rub_00006_.png",
+      "title": "1920s cartoon",
+      "repo": "AIWarper/RubberCore1920sCartoonStyle",
+      "trigger_word": "RU883R style",
+      "trigger_position": "prepend"
+    },
+    {
+      "image": "https://github.com/XLabs-AI/x-flux/blob/main/assets/readme/examples/picture-6-rev1.png?raw=true",
+      "title": "flux-Realism",
+      "repo": "XLabs-AI/flux-RealismLora",
+      "trigger_word": ""
+    },
+    {
+      "image": "https://huggingface.co/multimodalart/vintage-ads-flux/resolve/main/samples/j_XNU6Oe0mgttyvf9uPb3_dc244dd3d6c246b4aff8351444868d66.png",
+      "title": "Vintage Ads",
+      "repo":"multimodalart/vintage-ads-flux",
+      "trigger_word": "a vintage ad of",
+      "trigger_position": "prepend"
+    },
+    {
+      "image": "https://huggingface.co/mgwr/Cine-Aesthetic/resolve/main/images/00030-1333633802.png",
+      "title": "Cine Aesthetic",
+      "repo": "mgwr/Cine-Aesthetic",
+      "trigger_word": "mgwr/cine",
+      "trigger_position": "prepend"
+    },
+    {
+      "image": "https://huggingface.co/nerijs/animation2k-flux/resolve/main/images/Q8-oVxNnXvZ9HNrgbNpGw_02762aaaba3b47859ee5fe9403a371e3.png",
+      "title": "animation2k",
+      "repo": "nerijs/animation2k-flux",
+      "trigger_word": ""
+    },
+    {
+      "image":"https://huggingface.co/alvdansen/softserve_anime/resolve/main/images/ComfyUI_00062_.png",
+      "title":"SoftServe Anime", 
+      "repo": "alvdansen/softserve_anime",
+      "trigger_word": ""
+    },
+    {
+      "image": "https://huggingface.co/veryVANYA/ps1-style-flux/resolve/main/24439220.jpeg",
+      "title": "PS1 style",
+      "repo": "veryVANYA/ps1-style-flux",
+      "trigger_word": "ps1 game screenshot,",
+      "trigger_position": "prepend"
+    },
+    {
+      "image": "https://huggingface.co/Shakker-Labs/FLUX.1-dev-LoRA-blended-realistic-illustration/resolve/main/images/example3.png",
+      "title": "Blended Realistic Illustration",
+      "repo": "Shakker-Labs/FLUX.1-dev-LoRA-blended-realistic-illustration",
+      "trigger_word": "artistic style blends reality and illustration elements"
+    },
+    {
+      "image": "https://huggingface.co/alvdansen/flux-koda/resolve/main/images/ComfyUI_00566_%20(2).png",
+      "title": "flux koda",
+      "repo": "alvdansen/flux-koda",
+      "trigger_word": "flmft style"
+    },
+    {
+      "image": "https://huggingface.co/alvdansen/frosting_lane_flux/resolve/main/images/content%20-%202024-08-11T005936.346.jpeg",
+      "title": "Frosting Lane Flux",
+      "repo": "alvdansen/frosting_lane_flux",
+      "trigger_word": ""
+    },
+    {
+      "image": "https://pbs.twimg.com/media/GU7NsZPa8AA4Ddl?format=jpg&name=4096x4096",
+      "title": "Half Illustration",
+      "repo": "davisbro/half_illustration",
+      "trigger_word": "in the style of TOK"
+    },
+    {
+      "image":"https://pbs.twimg.com/media/GVRiSH7WgAAnI4P?format=jpg&name=medium",
+      "title":"wrong", 
+      "repo": "fofr/flux-wrong",
+      "trigger_word": "WRNG"
+    },
+    {
+      "image":"https://huggingface.co/linoyts/yarn_art_Flux_LoRA/resolve/main/yarn_art_2.png",
+      "title":"Yarn Art", 
+      "repo": "linoyts/yarn_art_Flux_LoRA",
+      "trigger_word": ", yarn art style"
+    },
+    {
+      "image": "https://huggingface.co/Norod78/Flux_1_Dev_LoRA_Paper-Cutout-Style/resolve/main/08a19840b6214b76b0607b2f9d5a7e28_63159b9d98124c008efb1d36446a615c.png",
+      "title": "Paper Cutout",
+      "repo": "Norod78/Flux_1_Dev_LoRA_Paper-Cutout-Style",
+      "trigger_word": ", Paper Cutout Style"
+    },
+    {
+      "image": "https://huggingface.co/SebastianBodza/flux_lora_aquarel_watercolor/resolve/main/images/ascend.webp",
+      "title": "Aquarell Watercolor",
+      "repo": "SebastianBodza/Flux_Aquarell_Watercolor_v2",
+      "trigger_word": "in a watercolor style, AQUACOLTOK. White background."
+    },
+    {
+      "image": "https://huggingface.co/dataautogpt3/FLUX-SyntheticAnime/resolve/main/assets/angel.png",
+      "title": "SyntheticAnime",
+      "repo": "dataautogpt3/FLUX-SyntheticAnime",
+      "trigger_word": "1980s anime screengrab, VHS quality"
+    },
+    {
+      "image": "https://github.com/XLabs-AI/x-flux/blob/main/assets/readme/examples/result_14.png?raw=true",
+      "title": "flux-anime",
+      "repo": "XLabs-AI/flux-lora-collection",
+      "weights": "anime_lora.safetensors",
+      "trigger_word": ", anime"
+    },
+    {
+      "image": "https://replicate.delivery/yhqm/QD8Ioy5NExqSCtBS8hG04XIRQZFaC9pxJemINT1bibyjZfSTA/out-0.webp",
+      "title": "80s Cyberpunk",
+      "repo": "fofr/flux-80s-cyberpunk",
+      "trigger_word": "style of 80s cyberpunk",
+      "trigger_position": "prepend"
+    },
+    {
+      "image": "https://huggingface.co/kudzueye/Boreal/resolve/main/images/ComfyUI_00845_.png",
+      "title": "Boreal",
+      "repo": "kudzueye/Boreal",
+      "weights": "boreal-flux-dev-lora-v04_1000_steps.safetensors",
+      "trigger_word": "phone photo"
+    },
+    {
+      "image": "https://github.com/XLabs-AI/x-flux/blob/main/assets/readme/examples/result_18.png?raw=true",
+      "title": "flux-disney",
+      "repo": "XLabs-AI/flux-lora-collection",
+      "weights": "disney_lora.safetensors",
+      "trigger_word": ", disney style"
+    },
+    {
+      "image": "https://github.com/XLabs-AI/x-flux/blob/main/assets/readme/examples/result_23.png?raw=true",
+      "title": "flux-art",
+      "repo": "XLabs-AI/flux-lora-collection",
+      "weights": "art_lora.safetensors",
+      "trigger_word": ", art"
+    },
+    {
+      "image": "https://huggingface.co/martintomov/retrofuturism-flux/resolve/main/images/2e40deba-858e-454f-ae1c-d1ba2adb6a65.jpeg",
+      "title": "Retrofuturism Flux",
+      "repo": "martintomov/retrofuturism-flux",
+      "trigger_word": ", retrofuturism"
+    }
+  ]
